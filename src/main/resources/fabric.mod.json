@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "oworld2create",
+  "version": "${version}",
+  "name": "0World2Create",
+  "description": "Prevent minecraft from opening the world creating screen when there's no existing world.",
+  "authors": [
+    "Tapio"
+  ],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "mixins": [
+    "oworld2create.fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  }
+}
