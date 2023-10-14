@@ -1,0 +1,10 @@
+modLoader = "lowcodefml"
+loaderVersion = "[41,)"
+license = "All Rights Reserved"
+[[mods]]
+modId = "oworld2create"
+version = "${file.jarVersion}"
+displayName = "0World2Create"
+authors = "Tapio" #optional
+displayTest = "IGNORE_ALL_VERSION"
+description = "Prevent minecraft from opening the world creating screen when there's no existing world."
