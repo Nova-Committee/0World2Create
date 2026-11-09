@@ -1,0 +1,45 @@
+def minecraftVersion = stonecutter.current.version
+def loader = project.name.substring(project.name.lastIndexOf('-') + 1)
+def javaRelease = minecraftVersion == '1.21.11' ? 21 : 25
+def fabric = loader == 'fabric'
+def loaderName = fabric ? 'Fabric' : 'NeoForge'
+
+group = "committee.nova.oworld2create.${loader}"
+version = mod_version
+base.archivesName = "${rootProject.name}-${loaderName}-${minecraftVersion}"
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(javaRelease)
+    withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = javaRelease
+}
+
+processResources {
+    exclude fabric ? 'META-INF/neoforge.mods.toml' : 'fabric.mod.json'
+    def metadata = [
+        version: project.version,
+        minecraft: minecraftVersion,
+        java: javaRelease,
+        fabricLoader: fabric_loader_version,
+        neoForge: findProperty('neoforge_version') ?: ''
+    ]
+    inputs.properties(metadata)
+    filesMatching(['fabric.mod.json', 'META-INF/neoforge.mods.toml', 'oworld2create.mixins.json']) {
+        expand metadata
+    }
+}
+
+tasks.named('jar') {
+    from rootProject.file('LICENSE.md')
+}
+
+def releaseJar = tasks.named(fabric && javaRelease == 21 ? 'remapJar' : 'jar')
+def targetBuild = tasks.named('build')
+rootProject.tasks.named('buildAndCollect', Sync).configure {
+    dependsOn targetBuild
+    from releaseJar.flatMap { it.archiveFile }
+}

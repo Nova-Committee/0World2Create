@@ -1,0 +1,27 @@
+license = "Nova Relay License 1.0"
+issueTrackerURL = "https://github.com/Nova-Committee/0World2Create/issues"
+
+[[mods]]
+modId = "oworld2create"
+version = "${version}"
+displayName = "0World2Create"
+displayURL = "https://github.com/Nova-Committee/0World2Create"
+authors = "Tapio"
+description = "Keep the world selection screen open when there are no saved worlds."
+
+[[mixins]]
+config = "oworld2create.mixins.json"
+
+[[dependencies.oworld2create]]
+modId = "neoforge"
+type = "required"
+versionRange = "[${neoForge},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.oworld2create]]
+modId = "minecraft"
+type = "required"
+versionRange = "[${minecraft}]"
+ordering = "NONE"
+side = "BOTH"

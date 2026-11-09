@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "oworld2create",
+  "version": "${version}",
+  "name": "0World2Create",
+  "description": "Keep the world selection screen open when there are no saved worlds.",
+  "authors": [
+    "Tapio"
+  ],
+  "contact": {
+    "sources": "https://github.com/Nova-Committee/0World2Create",
+    "issues": "https://github.com/Nova-Committee/0World2Create/issues"
+  },
+  "license": "Nova Relay License 1.0",
+  "environment": "client",
+  "mixins": [
+    "oworld2create.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabricLoader}",
+    "minecraft": "${minecraft}",
+    "java": ">=${java}"
+  }
+}
